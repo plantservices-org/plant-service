@@ -8,6 +8,6 @@ import lombok.Setter;
 public class CareTipResponseDTO {
 
     private Long plantId;
-    private String message;
+    private String tip;
 
 }
