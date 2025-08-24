@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: plant-service-deployment
+    labels:
+        app: plant-service-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: plant-service
+    template:
+        metadata:
+            labels:
+                app: plant-service
+        spec:
+            containers:
+                - name: plant-service-container
+                  image: uday07/plant-service
+                  ports:
+                    - containerPort: 8080

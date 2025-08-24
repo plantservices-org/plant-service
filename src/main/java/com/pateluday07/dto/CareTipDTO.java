@@ -5,9 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CareTipResponseDTO {
+public class CareTipDTO {
 
     private Long plantId;
     private String tip;
+    private String message;
 
 }

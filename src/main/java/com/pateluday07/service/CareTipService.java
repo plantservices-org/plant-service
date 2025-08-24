@@ -1,10 +1,9 @@
 package com.pateluday07.service;
 
-import com.pateluday07.dto.CareTipRequestDTO;
-import com.pateluday07.dto.CareTipResponseDTO;
+import com.pateluday07.dto.CareTipDTO;
 
 public interface CareTipService {
 
-    CareTipResponseDTO saveCareTip(CareTipRequestDTO careTipRequestDTO);
+    CareTipDTO saveCareTip(CareTipDTO careTipDTO);
 
 }

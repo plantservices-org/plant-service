@@ -1,8 +1,7 @@
 package com.pateluday07.service;
 
 import com.pateluday07.client.CareTipClient;
-import com.pateluday07.dto.CareTipRequestDTO;
-import com.pateluday07.dto.CareTipResponseDTO;
+import com.pateluday07.dto.CareTipDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +12,12 @@ public class CareTipServiceImpl implements CareTipService {
     private final CareTipClient careTipClient;
 
     @Override
-    public CareTipResponseDTO saveCareTip(CareTipRequestDTO careTipRequestDTO) {
-        if (careTipRequestDTO.getPlantId() == null || careTipRequestDTO.getTip() == null || careTipRequestDTO.getTip().isEmpty()) {
+    public CareTipDTO saveCareTip(CareTipDTO careTipDTO) {
+        if (careTipDTO.getPlantId() == null || careTipDTO.getTip() == null || careTipDTO.getTip().isEmpty()) {
             throw new IllegalArgumentException("Plant ID and tip cannot be null or empty");
         }
         try {
-            return careTipClient.saveCareTip(careTipRequestDTO);
+            return careTipClient.saveCareTip(careTipDTO);
         } catch (Exception e) {
             throw new RuntimeException("Failed to save care tip: " + e.getMessage(), e);
         }

@@ -1,7 +1,6 @@
 package com.pateluday07.controller;
 
-import com.pateluday07.dto.CareTipRequestDTO;
-import com.pateluday07.dto.CareTipResponseDTO;
+import com.pateluday07.dto.CareTipDTO;
 import com.pateluday07.service.CareTipService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,7 @@ public class CareTipController {
     private final CareTipService careTipService;
 
     @PostMapping("/care-tips")
-    public ResponseEntity<CareTipResponseDTO> saveCareTip(@RequestBody CareTipRequestDTO careTipRequest) {
+    public ResponseEntity<CareTipDTO> saveCareTip(@RequestBody CareTipDTO careTipRequest) {
         return ResponseEntity.ok(careTipService.saveCareTip(careTipRequest));
     }
 
