@@ -1,6 +1,10 @@
 spring:
   application:
     name: plant-service
+  profiles:
+    active: k8
+  jackson:
+    default-property-inclusion: non_empty
 
 feign:
   client:
@@ -14,5 +18,8 @@ feign:
           maxPeriod: 1000
           maxAttempts: 3
 
-care-tip-service:
-  url: http://care-tip-service
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: never

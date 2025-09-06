@@ -3,6 +3,7 @@ package com.pateluday07.service;
 import com.pateluday07.client.CareTipClient;
 import com.pateluday07.dto.PlantDTO;
 import com.pateluday07.dto.PlantSummaryDTO;
+import feign.FeignException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -39,10 +40,18 @@ public class PlantServiceImpl implements PlantService {
         try {
             var careTip = careTipClient.getCareTipByPlantId(id);
             plant.setTip(careTip.getTip());
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to fetch care tip for plant ID: " + id, e);
+        } catch (FeignException e) {
+            if (e.status() == 404) {
+                plant.setTip("No care tip available for this plant.");
+                return plant;
+            }
+            throw new ResponseStatusException(HttpStatus.valueOf(e.status()), e.getMessage());
         }
         return plant;
+    }
+
+    public static Map<Long, PlantDTO> getPlantDummyDb() {
+        return PLANT_DUMMY_DB;
     }
 
 }
